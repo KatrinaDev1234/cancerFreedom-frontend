@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from './Sidebar'
 import TopSearchBar from './TopSearchBar'
-import BG from "../assets/Bg.png"
+import BG from "../assets/Bg.svg"
 import { FaDownload } from 'react-icons/fa'
 import { IoCloudDownloadOutline } from 'react-icons/io5'
 import { useLocation } from 'react-router-dom'
@@ -17,13 +17,13 @@ export default function Layout({className, children}) {
             <TopSearchBar/>
             <div style={{
                 backgroundImage: `url(${BG})`,
-                backgroundSize: 'auto', // Keep the original size
-                backgroundPosition: 'center',
+                backgroundSize: 'cover', // Keep the original size
+                backgroundPosition: '',
                 backgroundRepeat: 'no-repeat',
                 backgroundAttachment: 'fixed', // Ensure it doesn't move on scroll
                 minHeight: 'calc(100vh - 3.7rem)' // Ensure it covers the remaining height
             }}
-            className={`bg-yellow-100 p-4 grow  ${className}`}
+            className={` p-4 grow  ${className}`}
             >
             {children}
             </div>

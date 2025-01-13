@@ -38,7 +38,7 @@ export default function ResultAccordion({ data }) {
       </div>
       {/* </Accordion> */}
       <div className="flex items-center justify-center mt-4 gap-4">
-        <button className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">
+        <button onClick={()=> setResults({})} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">
           Generate new report
         </button>
         <button
