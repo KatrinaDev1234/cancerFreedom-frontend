@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom'
 
 export default function Layout({className, children}) {
   const {pathname} = useLocation(); 
-  console.log(pathname);
+  // console.log(pathname);
   
   return (
     // <div className='grid grid-cols-[24rem_1fr]'>
