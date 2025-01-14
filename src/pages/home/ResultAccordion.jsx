@@ -4,6 +4,7 @@ import { IoIosArrowDown } from "react-icons/io";
 
 import { useNavigate } from "react-router-dom";
 
+
 export default function ResultAccordion({ data }) {
   const nav = useNavigate();
   const [results, setResults] = useState({});
@@ -24,7 +25,7 @@ export default function ResultAccordion({ data }) {
   //   console.log("--------",results)
   // },[results])
   return (
-    <div className="bg-white p-4 rounded-xl ">
+    <div className="bg-white p-4 rounded-xl font-nunito"> {/* Add font-nunito class */}
       {/* <Accordion allowMultipleExpanded={true} allowZeroExpanded={true}> */}
       <div className="space-y-4">
         {data.map((item, idx) => (
