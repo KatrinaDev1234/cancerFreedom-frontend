@@ -1,13 +1,18 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 import { IoIosArrowDown } from "react-icons/io";
 
 import { useNavigate } from "react-router-dom";
+import { API_BASEURL, tempBody } from "../../utils/constants";
+import { useReportContext } from "../../components/ReportContext";
 
 
 export default function ResultAccordion({ data }) {
   const nav = useNavigate();
   const [results, setResults] = useState({});
+  const {setReport} = useReportContext();
+  const [loading,setLoading] = useState(false);
 
   function handleInputChange(heading, question, answer) {
     if (results?.[heading]?.[question] === answer) {
@@ -20,7 +25,22 @@ export default function ResultAccordion({ data }) {
         [heading]: { ...results[heading], [question]: answer },
       });
   }
-
+ async function handleGenerateReport() {
+  try {
+    setLoading(true);
+    const {data: {data}}= await axios.post(`${API_BASEURL}/report`, results);
+    // console.log(data)
+    setReport(data);
+    nav("/viewReport/report")
+  } catch (error) {
+    alert("ERROR", error.message);
+    console.log(error.message);
+    
+  }
+  finally{
+    setLoading(false);
+  }
+ }
   // useEffect(()=> {
   //   console.log("--------",results)
   // },[results])
@@ -43,10 +63,10 @@ export default function ResultAccordion({ data }) {
           Generate new report
         </button>
         <button
-          onClick={() => nav("/viewReport/report")}
+          onClick={!loading && handleGenerateReport}
           className="border border-primary basis-1/2 py-2 rounded-lg bg-primary text-white"
         >
-          Generate Report
+        {  loading? " LOADING..." : "Generate Report"}
         </button>
       </div>
     </div>

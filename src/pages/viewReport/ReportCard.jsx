@@ -1,15 +1,20 @@
 import React from 'react'
+import { ReportCardData } from '../../utils/ReportCardData';
+import { FaArrowDownLong, FaArrowUpLong } from 'react-icons/fa6';
+import { BsDash } from 'react-icons/bs';
 
 export default function ReportCard({data}) {
+  // console.log("DATA", data);
+  
   return (
     <div className="p-6  mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-    <h1 className="text-2xl font-bold mb-4">{data.heading}</h1>
+    <h1 className="text-2xl font-bold mb-4 capitalize">{data?.heading}</h1>
     <p className="mb-4 text-gray-700">
-     {data.description}
+     {ReportCardData.filter(v=> v.heading.toLowerCase()==data?.heading.toLowerCase())?.[0]?.description}
     </p>
 
     <div className="overflow-x-auto space-y-6">
-{data.tables.map((table, index) => (
+{data?.tables.map((table, index) => (
 <div className=''>
 {table.tableHeading && <h2 className="text-gray-600 mb-3 text-lg">{table.tableHeading}</h2>}
 <Table data={table.tableData} />
@@ -54,9 +59,18 @@ const Table= ({data})=> (
    <td className="py-2 px-4 border border-gray-300">{v.range.min}</td>
    <td className="py-2 px-4 border border-gray-300">{v.range.max}</td>
    <td className="py-2 px-4 border border-gray-300">{v.enter}</td>
-   <td className="py-2 px-4 border border-gray-300 text-red-600 font-bold">
-     {v.status}
-   </td>
+ 
+   {v.status== "above range" &&  <td className={`py-2 px-4 border border-gray-300 bg-orange-500 font-bold `}>
+  <span className='mx-auto w-full  flex items-center justify-center text-white'>   <FaArrowUpLong/></span>
+   </td>}
+   {v.status== "below range" &&  <td className={`py-2 px-4 border border-gray-300 bg-red-700 font-bold `}>
+  <span className='mx-auto w-full  flex items-center justify-center text-white'> <FaArrowDownLong/></span>
+
+     
+   </td>}
+   {v.status== "present" &&  <td className={`py-2 px-4 border border-gray-300 bg-yellow-300 font-bold `}>
+  <span className='mx-auto w-full  flex items-center justify-center text-black'> <BsDash/> </span>
+   </td>}
  </tr>
         ))}
    
