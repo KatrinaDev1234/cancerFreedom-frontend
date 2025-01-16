@@ -13,7 +13,7 @@ export default function ReportCard({data}) {
      {ReportCardData.filter(v=> v.heading.toLowerCase()==data?.heading.toLowerCase())?.[0]?.description}
     </p>
 
-    <div className="overflow-x-auto space-y-6">
+   {data.heading.toLowerCase() !="genetics & epigenetics" ? <div className="overflow-x-auto space-y-6">
 {data?.tables.map((table, index) => (
 <div className=''>
 {table.tableHeading && <h2 className="text-gray-600 mb-3 text-lg">{table.tableHeading}</h2>}
@@ -23,7 +23,19 @@ export default function ReportCard({data}) {
 
    
 
-    </div>
+    </div>: (
+      <div className="overflow-x-auto space-y-6">
+      {data?.tables.map((table, index) => (
+      <div className=''>
+      {table.tableHeading && <h2 className="text-gray-600 mb-3 text-lg">{table.tableHeading}</h2>}
+      <GeneticTable data={table.tableData} />
+          </div>
+      ))}
+      
+         
+      
+          </div>
+    )}
 
     <div className="mt-4 p-3 border border-gray-300 rounded-lg">
       <h2 className="text-gray-600">Note</h2>
@@ -95,3 +107,23 @@ const Table= ({data})=> (
     </tbody>
   </table>
 )
+
+
+const GeneticTable = ({ data }) => (
+  <table className="w-full border-collapse border border-gray-200  text-primary">
+    <thead>
+      <tr className="bg-primary text-white">
+        <th className="py-2 px-4 border border-gray-300">Lab</th>
+        <th className="py-2 px-4 border border-gray-300">Recommendation</th>
+      </tr>
+    </thead>
+    <tbody>
+      {data.map((row, idx) => (
+        <tr key={idx}>
+          <td className="py-2 px-4 border border-gray-300 text-center">{row.lab}</td>
+          <td className="py-2 px-4 border border-gray-300">{row.recommendation}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);

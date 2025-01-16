@@ -26,16 +26,16 @@ export default function ViewReport() {
             
         }
         </div>
-        <div className='max-w-4xl mx-auto p-4 pb-24'>
+        <div className='max-w-4xl mx-auto p-4 pb-4'>
 
 
         <Outlet />
         </div>
-        <div className="flex w-[52rem] left-1/2 -translate-x-1/2  mx-auto items-center justify-center mt-4 gap-4 bg-white p-4 rounded-xl absolute bottom-4">
+        {/* <div className="flex w-[52rem] left-1/2 -translate-x-1/2  mx-auto items-center justify-center mt-4 gap-4 bg-white p-4 rounded-xl absolute bottom-4">
         <button  onClick={()=> nav("/newReport/Result")} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">Generate new report</button>
         <button  onClick={() => reactToPrintFn()} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary text-white">Print</button>
 
-      </div>
+      </div> */}
        
     </Layout>
   )
