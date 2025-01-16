@@ -11,8 +11,8 @@ import { toArrayOfObjects } from '../../utils/helpers'
 
 export default function Report() {
     const nav= useNavigate();
-    const contentRef = useRef(null);
-const reactToPrintFn = useReactToPrint({ contentRef });
+//     const contentRef = useRef(null);
+// const reactToPrintFn = useReactToPrint({ contentRef });
 const {report } = useReportContext();
 // console.log("REPORT", report);
 
@@ -26,8 +26,8 @@ const {report } = useReportContext();
 
   return (
     <>
-   <div ref={contentRef} className='space-y-6 p-4'>
-    <MainHeading className={"font-bold mb-6 text-gray-800"}>Root Cause Assessment</MainHeading>
+   <div  className='space-y-6 p-4'>
+    <MainHeading className={"font-bold mb-6 text-gray-800 screen-only"}>Root Cause Assessment</MainHeading>
     <h2 className='text-2xl text-gray-800'>Functional lab interpretation for :</h2>
     <div className=' flex items-center gap-4'>
     <h2 className='text-2xl text-gray-800 font-bold'>Key :</h2>
@@ -48,11 +48,11 @@ const {report } = useReportContext();
  
 
    </div>
-   <div className="flex items-center justify-center mt-4 gap-4 bg-white p-4 rounded-xl">
+   {/* <div className="flex items-center justify-center mt-4 gap-4 bg-white p-4 rounded-xl">
         <button  onClick={()=> nav("/newReport/Result")} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">Generate new report</button>
         <button  onClick={() => reactToPrintFn()} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary text-white">Print</button>
 
-      </div>
+      </div> */}
    </>
   )
 }
