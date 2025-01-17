@@ -73,7 +73,7 @@ const data = [
 
 const Lifestyle = () => {
   return (
-    <div className="max-w-4xl mx-auto ">
+    <div className="max-w-5xl mx-auto  ">
       <table className="table-auto w-full border border-gray-300 bg-white">
         <thead>
           <tr className="bg-gray-100">

@@ -40,7 +40,7 @@ const {report } = useReportContext();
     </div>
 
 <div className='space-y-6'>
-{report?.length>0 && report.map((data, index) => (
+{report?.report?.length>0 && report?.report?.map((data, index) => (
 <ReportCard key={index} data={data} />
 ))}
 </div>
