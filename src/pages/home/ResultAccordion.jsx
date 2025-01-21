@@ -3,14 +3,16 @@ import React, { useEffect, useState } from "react";
 
 import { IoIosArrowDown } from "react-icons/io";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { API_BASEURL, tempBody } from "../../utils/constants";
 import { useReportContext } from "../../components/ReportContext";
 
 
 export default function ResultAccordion({ data }) {
   const nav = useNavigate();
-  const [results, setResults] = useState({});
+  const location = useLocation();
+  const initialResults = location.state?.report || {};  
+  const [results, setResults] = useState(initialResults);
   const {setReport} = useReportContext();
   const [loading,setLoading] = useState(false);
 
@@ -25,6 +27,25 @@ export default function ResultAccordion({ data }) {
         [heading]: { ...results[heading], [question]: answer },
       });
   }
+ async function handleSaveDraft() {
+  try {
+    setLoading(true);
+    const {data: {data}}= await axios.post(`${API_BASEURL}/report/save-draft`, results, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },  
+    });
+    setReport(data);
+    nav(-1)
+  } catch (error) {
+    alert("NETWORK ERROR", error.message);
+    console.log(error.message);
+    
+  }
+  finally{
+    setLoading(false);
+  }
+ }
  async function handleGenerateReport() {
   try {
     setLoading(true);
@@ -63,8 +84,11 @@ export default function ResultAccordion({ data }) {
       </div>
       {/* </Accordion> */}
       <div className="flex items-center justify-center mt-4 gap-4">
-        <button onClick={()=> setResults({})} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">
+        {/* <button onClick={()=> setResults({})} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">
           Generate new report
+        </button> */}
+        <button onClick={handleSaveDraft} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">
+          Save draft
         </button>
         <button
           onClick={!loading && handleGenerateReport}
