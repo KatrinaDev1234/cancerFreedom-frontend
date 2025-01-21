@@ -28,12 +28,16 @@ export default function ResultAccordion({ data }) {
  async function handleGenerateReport() {
   try {
     setLoading(true);
-    const {data: {data}}= await axios.post(`${API_BASEURL}/report`, results);
+    const {data: {data}}= await axios.post(`${API_BASEURL}/report`, results, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },  
+    });
     // console.log(data)
     setReport(data);
     nav("/viewReport/report")
   } catch (error) {
-    alert("ERROR", error.message);
+    alert("NETWORK ERROR", error.message);
     console.log(error.message);
     
   }
