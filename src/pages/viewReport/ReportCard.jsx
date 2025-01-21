@@ -68,8 +68,8 @@ const Table= ({data})=> (
         {data.map((v,idx)=> (
    <tr>
    <td className="py-2 px-4 border border-gray-300">{v.lab}</td>
-   <td className="py-2 px-4 border border-gray-300">{v.range.min}</td>
-   <td className="py-2 px-4 border border-gray-300">{v.range.max}</td>
+   <td className="py-2 px-4 border border-gray-300">{v.range?.min}</td>
+   <td className="py-2 px-4 border border-gray-300">{v.range?.max}</td>
    <td className="py-2 px-4 border border-gray-300">{v.enter}</td>
  
    {v.status== "above range" &&  <td className={`py-2 px-4 border border-gray-300 bg-orange-500 font-bold `}>
