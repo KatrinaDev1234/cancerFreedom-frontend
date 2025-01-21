@@ -3,6 +3,7 @@ import AppRoutes from "./components/AppRoutes";
 import ReportContextProvider from "./components/ReportContext";
 
 function App() {
+  // console.log("APP");
   return (
     <ReportContextProvider>
       <AppRoutes />
