@@ -90,7 +90,7 @@ export default function ResultAccordion({ data }) {
         <button onClick={handleSaveDraft} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">
           Save draft
         </button>
-        <button onClick={()=> setResults(tempBody)} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">
+        <button onClick={()=> setResults({...tempBody})} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">
           Fake Fill
         </button>
         <button
