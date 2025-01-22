@@ -22,18 +22,7 @@ const AppRoutes = () => {
 
     <Route path="/previousReport/Result" element={<ReportResult />} />
     <Route path="/newReport/Result" element={<ReportResult />} />
-    <Route path='/viewReport' element={<ViewReport/>}>
-<Route path='report' element={<Report/>}/>
-<Route path='recommendation' element={<Recommendations/>}/>
-<Route path='lifestyle' element={<Lifestyle/>}/>
-
-    </Route>
-
-
-
-
-
-
+    <Route path='/viewReport' element={<ViewReport/>} />
    </Routes>
    </BrowserRouter>
   )

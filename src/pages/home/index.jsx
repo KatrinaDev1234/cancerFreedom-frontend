@@ -40,13 +40,26 @@ function Form() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if(data?.email.includes("@") === false) {
-      // alert("Please enter a valid email address");
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const birthDate = new Date(data.dob);
+    let age = new Date().getFullYear() - birthDate.getFullYear();
+    const monthDiff = new Date().getMonth() - birthDate.getMonth();
+    const dayDiff = new Date().getDate() - birthDate.getDate();
+
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      age--;
+    }
+
+    if (!emailRegex.test(data.email)) {
       setErr("Please enter a valid email address");
       return;
     }
-    if(data?.dob === "") {
+    if (data.dob === "") {
       setErr("Please enter your date of birth");
+      return;
+    }
+    if (age < 16) {
+      setErr("You must be at least 16 years old to join the program");
       return;
     }
 
@@ -73,14 +86,14 @@ function Form() {
           type="email"
           placeholder="Email"
           onChange={(e)=> {setErr(null), setData({...data, email: e.target.value})}}
-          className="w-full  border-none outline-none bg-white px-2 py-4 rounded-full placeholder:font-bold"
+          className="w-full  border-none outline-none bg-white px-2 py-4 rounded-full placeholder:font-bold text-lg"
         />
         <input
           type="date"
           onChange={(e)=> {setErr(null),setData({...data, dob: e.target.value})}}
           max={minDateString} // Disable future dates and dates less than 16 years ago
           placeholder="DD/MM/YYYY"
-          className="w-full  border-none outline-none bg-white px-2 py-4 rounded-full placeholder:font-bold "
+          className="w-full  border-none outline-none bg-white px-2 py-4 rounded-full placeholder:font-bold text-lg "
         />
         {err && <div className="text-red-500 text-center">{err}</div>}
 

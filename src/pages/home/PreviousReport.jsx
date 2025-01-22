@@ -66,7 +66,7 @@ export default function PreviousReport() {
                                 <button
                                     onClick={() => {
                                       setReport(report?.report)
-                                      nav("/viewReport/report")
+                                      nav("/viewReport")
                                     }} 
                                     className='text-center flex items-center justify-center gap-2 p-1.5 text-black border font-bold w-full rounded-xl'>
                                     View Report

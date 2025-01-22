@@ -15,25 +15,35 @@ export default function ResultAccordion({ data }) {
   const location = useLocation();
   const initialResults = location.state?.report || {};  
   const [results, setResults] = useState(initialResults);
+  const [isAllFilled, setIsAllFilled] = useState(false);
+  const [isDraftDisbled, setIsDraftDisbled] = useState(true);
   // console.log(location.state?.id);
   
   const {setReport} = useReportContext();
   const [loading,setLoading] = useState(false);
 
   function handleInputChange(heading, question, answer) {
-    if (results?.[heading]?.[question] === answer) {
+    if (answer === "") {
       const newResults = { ...results };
       delete newResults[heading][question];
       setResults(newResults);
-    } else
+    } else if (results?.[heading]?.[question] === answer) {
+      const newResults = { ...results };
+      delete newResults[heading][question];
+      setResults(newResults);
+    } else {
       setResults({
         ...results,
         [heading]: { ...results[heading], [question]: answer },
       });
+    }
   }
+
  async function handleSaveDraft() {
   try {
     setLoading(true);
+
+
     const {data: {data}}= await axios.post(`${API_BASEURL}/report/save-draft`, results, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -56,6 +66,7 @@ export default function ResultAccordion({ data }) {
  async function handleGenerateReport() {
   try {
     setLoading(true);
+    
     const {data: {data}}= await axios.post(`${API_BASEURL}/report`, results, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -66,7 +77,7 @@ export default function ResultAccordion({ data }) {
     });
     // console.log(data)
     setReport(data);
-    nav("/viewReport/report")
+    nav("/viewReport")
   } catch (error) {
     alert("NETWORK ERROR", error.message);
     console.log(error.message);
@@ -76,9 +87,30 @@ export default function ResultAccordion({ data }) {
     setLoading(false);
   }
  }
-  // useEffect(()=> {
-  //   console.log("--------",results)
-  // },[results])
+  useEffect(()=> {
+    let resDup = {...results};
+    Object.keys(resDup).forEach((key)=> {
+      Object.keys(resDup[key]).length === 0 && delete resDup[key];
+    })
+    let isAllFilled = Object.keys(resDup)?.length>0? true : false;
+    Object.entries(resDup).forEach((val) => {
+      
+     data.filter((item)=> item.heading===val[0])[0].options.length !== Object.keys(val[1]).length && (isAllFilled = false);
+      
+    })
+    if(isAllFilled ){
+      // console.log("HELLO",Object.keys(resDup).length, data.length);
+
+      Object.keys(resDup).length==data.length && setIsAllFilled(true);
+    } 
+    else
+setIsAllFilled(false);
+Object.keys(resDup).length === 0 ? setIsDraftDisbled(true) : setIsDraftDisbled(false);
+// setResults(resDup);
+    // console.log("--------",resDup, isAllFilled)
+  },[results])
+  // console.log(isAllFilled);
+  
   return (
     <div className="bg-white p-4 rounded-xl font-nunito"> {/* Add font-nunito class */}
       {/* <Accordion allowMultipleExpanded={true} allowZeroExpanded={true}> */}
@@ -97,15 +129,16 @@ export default function ResultAccordion({ data }) {
         {/* <button onClick={()=> setResults({})} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">
           Generate new report
         </button> */}
-        <button onClick={handleSaveDraft} className="border border-primary basis-1/2 py-2 flex items-center justify-center gap-2 rounded-lg bg-primary/20 text-primary capitalize transition duration-300 ease-in-out hover:bg-primary/30">
+        <button disabled={isDraftDisbled} onClick={handleSaveDraft} className="border border-primary basis-1/2 py-2 flex items-center justify-center gap-2 rounded-lg bg-primary/20 text-primary capitalize transition duration-300 ease-in-out hover:bg-primary/30 disabled:cursor-not-allowed">
           Save draft <FiFileText/>
         </button>
         <button onClick={()=> setResults({...tempBody})} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize transition duration-300 ease-in-out hover:bg-primary/30">
           Fake Fill
         </button>
         <button
+        disabled={!isAllFilled}
           onClick={!loading && handleGenerateReport}
-          className="border border-primary basis-1/2 py-2 rounded-lg bg-primary text-white flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:bg-primaryDark"
+          className="border border-primary basis-1/2 py-2 rounded-lg bg-primary text-white flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:bg-primaryDark disabled:cursor-not-allowed"
         >
         {  loading? " LOADING..." : "Generate Report"} <IoDocumentTextOutline/>
         </button>
@@ -157,6 +190,7 @@ const AccordionCard = ({ item, handleInputChange, results }) => {
               <SingleOption
                 results={results}
                 handleInputChange={handleInputChange}
+
                 key={idx}
                 item={val}
                 heading={item.heading}
