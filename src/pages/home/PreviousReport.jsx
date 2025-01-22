@@ -14,25 +14,26 @@ export default function PreviousReport() {
     const [reports, setReports] = useState([]);
     const [loading, setLoading] = useState(false);
     
+    async function getUser() {
+      try {
+        setLoading(true);
+        const {data: {data}}= await axios.get(`${API_BASEURL}/user`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },  
+        });          
+        setReports(data.reports);
+      } catch (error) {
+        alert("NETWORK ERROR", error.message);
+        console.log(error.message);
+        
+      }
+      finally{
+        setLoading(false);
+      }
+     }
     useEffect(() => {
-      async function getUser() {
-        try {
-          setLoading(true);
-          const {data: {data}}= await axios.get(`${API_BASEURL}/user`, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },  
-          });          
-          setReports(data.reports);
-        } catch (error) {
-          alert("NETWORK ERROR", error.message);
-          console.log(error.message);
-          
-        }
-        finally{
-          setLoading(false);
-        }
-       }
+     
         getUser();
     } , []);
   return (
