@@ -35,7 +35,7 @@ export default function ViewReport() {
         ))}
       </div>
     
-      <div ref={contentRef} className="max-w-5xl mx-auto p-2">
+      <div ref={contentRef} className="max-w-5xl mx-auto p-2 relative">
         <div className="print-only flex items-center justify-between w-full mb-4">
           <img src={LOGO} />
           <span className="uppercase text-xl font-bold">
@@ -48,10 +48,10 @@ export default function ViewReport() {
             <p>{localStorage.getItem("dob")}</p>
           </div>
         </div>
-        <div className="flex justify-end mb-4 screen-only">
+        <div className={`flex justify-end mb-4 screen-only z-[1000] ${view=="report" && "absolute right-2 "}`}>
           <button
             onClick={() => reactToPrintFn()}
-            className="border border-primary w-40 py-2 rounded-lg bg-primary text-white flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:bg-primaryDark"
+            className="border border-primary w-40 py-2 rounded-lg bg-primary text-white flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:bg-primaryDark "
           >
             Print <span className="text-xl"><IoPrintOutline/></span>
           </button>

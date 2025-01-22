@@ -20,8 +20,8 @@ export default function Recommendations() {
   // console.log(report?.recommendations);
   
   return (
-    <div className="bg-white shadow-lg rounded-lg p-4">
-    <h2 className="text-2xl font-semibold mb-4">Recommendations</h2>
+    <div className="bg-white shadow-lg rounded-lg ">
+    {/* <h2 className="text-2xl font-semibold mb-4">Recommendations</h2> */}
     <div className="overflow-x-auto">
       <table className="w-full border-collapse border border-gray-200 text-sm text-left">
         <thead>

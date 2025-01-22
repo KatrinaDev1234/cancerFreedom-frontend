@@ -26,8 +26,8 @@ const {report } = useReportContext();
 
   return (
     <>
-   <div  className='space-y-4 p-2'>
-    <MainHeading className={"font-bold  text-gray-800 screen-only"}>Root Cause Assessment</MainHeading>
+   <div  className='space-y-4 p-2  '>
+    <MainHeading className={"font-bold  text-gray-800 screen-only inline "}>Root Cause Assessment</MainHeading>
     <h2 className='text-xl text-gray-800'>Functional lab interpretation for :</h2>
     <div className=' flex items-center gap-4'>
     <h2 className='text-xl text-gray-800 font-bold'>Key :</h2>
