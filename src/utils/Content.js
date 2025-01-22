@@ -1,6 +1,6 @@
 export const prevReportResult = [
   {
-    heading: "general questions and additional suppliments",
+    heading: "general questions and additional supplements",
     options: [
       {
         question: "Have Heartburn?",
@@ -91,6 +91,18 @@ export const prevReportResult = [
         },
       },
     ],
+  },
+  {
+    heading: "adverse childhood events (ACEs) ",
+    options: [
+    {
+      question: "Number Of ACEs",
+      answer: {
+        type: "input",
+        unit: null,
+      },
+    }
+    ]
   },
   {
     heading: "blood test",

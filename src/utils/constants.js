@@ -16,6 +16,11 @@ export const tempBody={
       "Do you have hypoglycemic symptoms such as being 'hangry' between meals, lightheaded/dizzy, energized after eating?": "No",
       "Hypothyroid symptoms?\n(fatigue, weight gain/hard to lose weight, sensitive to cold, sluggish circulation, low heart rate & BP, muscle aches and stiffness incl cramps, menstrual cycles that are heavier than usual or irregular, joint pain, constipation, dry skin, coarse skin, puffy face, coarse hair, thinning hair, loss of outer 1/3 of eyebrows, depression, memory issues)": "Yes"
     },
+    
+      "adverse childhood events (ACEs) ": {
+        "Number Of ACEs": 3,
+      },
+    
     "blood test": {
       "TSH": 3,
       "Free T4": 0.2,

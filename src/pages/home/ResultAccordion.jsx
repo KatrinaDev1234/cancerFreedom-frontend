@@ -90,6 +90,9 @@ export default function ResultAccordion({ data }) {
         <button onClick={handleSaveDraft} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">
           Save draft
         </button>
+        <button onClick={()=> setResults(tempBody)} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">
+          Fake Fill
+        </button>
         <button
           onClick={!loading && handleGenerateReport}
           className="border border-primary basis-1/2 py-2 rounded-lg bg-primary text-white"
@@ -223,14 +226,14 @@ const InputButton = ({
   results,
 }) => {
   return (
-    <div className="flex justify-between  min-w-44 items-center gap-2 text-nowrap ">
+    <div className="flex justify-end  min-w-44 items-center gap-2 text-nowrap ">
       <input
         value={results?.[heading]?.[question]}
         onChange={(e) => handleInputChange(heading, question, e.target.value)}
         type="text"
         className="border border-gray-300 p-2 rounded-md w-24 basis-1/2 "
       />
-      <div className="basis-1/2">{unit}</div>
+     {unit &&  <div className="basis-1/2">{unit}</div>}
     </div>
   );
 };

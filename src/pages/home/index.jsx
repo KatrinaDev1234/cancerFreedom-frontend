@@ -33,11 +33,18 @@ function Form() {
   const [loading, setLoading] = useState(false);
 
   const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+  const minDate = new Date();
+  minDate.setFullYear(minDate.getFullYear() - 16);
+  const minDateString = minDate.toISOString().split("T")[0];
 
   async function handleSubmit(e) {
     e.preventDefault();
     if(data?.email.includes("@") === false) {
       alert("Please enter a valid email address");
+      return;
+    }
+    if(data?.dob === "") {
+      alert("Please enter your date of birth");
       return;
     }
 
@@ -66,7 +73,7 @@ function Form() {
         <input
           type="date"
           onChange={(e)=> setData({...data, dob: e.target.value})}
-          max={today} // Disable future dates
+          max={minDateString} // Disable future dates and dates less than 16 years ago
           placeholder="DD/MM/YYYY"
           className="w-full  border-none outline-none bg-white px-2 py-4 rounded-full placeholder:font-bold "
         />
