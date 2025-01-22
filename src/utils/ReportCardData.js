@@ -1,3 +1,5 @@
+import { img1, img2, img3, img4, img5, img6, img7, img8, img9, img10 } from "../assets";
+
 export const ReportCardData = [
   {
     heading: "Trifecta",
@@ -39,6 +41,7 @@ export const ReportCardData = [
         ],
       },
     ],
+    icon : img5
   },
   {
     heading: "Metabolic Balance",
@@ -105,6 +108,7 @@ export const ReportCardData = [
         ],
       },
     ],
+    icon: img1
   },
   {
     heading: "Mental and Emotional Well-Being",
@@ -126,6 +130,7 @@ export const ReportCardData = [
         ],
       },
     ],
+    icon: img2
   },
   {
     heading: "Inflammation and Oxidative Stress",
@@ -219,6 +224,7 @@ export const ReportCardData = [
         ],
       },
     ],
+    icon: img3
   },
   {
     heading: "Microbiome Balance",
@@ -384,6 +390,7 @@ export const ReportCardData = [
         ],
       },
     ],
+    icon: img4
   },
   {
     heading: "Hormone Balance",
@@ -509,6 +516,7 @@ export const ReportCardData = [
         ],
       },
     ],
+    icon: img5
   },
   {
     heading: "Stress & Circadian Rhythm",
@@ -548,6 +556,7 @@ export const ReportCardData = [
         ],
       },
     ],
+    icon: img6
   },
 
   {
@@ -633,6 +642,7 @@ export const ReportCardData = [
         ],
       },
     ],
+    icon: img7
   },
   {
     heading: "Immune Modulation",
@@ -753,6 +763,7 @@ export const ReportCardData = [
         ],
       },
     ],
+    icon: img8
   },
   {
     heading: "Angiogenesis and Metastasis",
@@ -855,5 +866,10 @@ export const ReportCardData = [
         ],
       },
     ],
+    icon: img9
   },
+  {
+    heading: "Genetics & Epigenetics",
+    icon: img10
+  }
 ];

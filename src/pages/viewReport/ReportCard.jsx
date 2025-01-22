@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ReportCardData } from '../../utils/ReportCardData';
 import { FaArrowDownLong, FaArrowUpLong } from 'react-icons/fa6';
 import { BsDash } from 'react-icons/bs';
 
 export default function ReportCard({data}) {
   // console.log("DATA", data);
+  const [note,setNote] = useState({
+
+  })
   
   return (
     <div className="p-6  mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-    <h1 className="text-2xl font-bold mb-4 capitalize">{data?.heading}</h1>
+      <div className='flex gap-2 items-center mb-4 '>
+<img src={ReportCardData.filter(v=> v.heading.toLowerCase()==data?.heading.toLowerCase())?.[0]?.icon} className='w-16' />
+    <h1 className="text-2xl font-bold  capitalize">{data?.heading}</h1>
+      </div>
     <p className="mb-4 text-gray-700">
      {ReportCardData.filter(v=> v.heading.toLowerCase()==data?.heading.toLowerCase())?.[0]?.description}
     </p>
@@ -37,8 +43,9 @@ export default function ReportCard({data}) {
           </div>
     )}
 
-    <div className="mt-4 p-3 border border-gray-300 rounded-lg">
+    <div className={`mt-4 p-3 border border-gray-300 rounded-lg flex gap-4 items-center ${note?.[data?.heading]=="" || note?.[data?.heading]==undefined ? "screen-only" : ""}`}>
       <h2 className="text-gray-600">Note</h2>
+      <textarea onChange={(e)=> setNote({...note, [data?.heading]: e.target.value })} rows={1} className='w-full outline-none  p-1 rounded-lg'/>
     </div>
   </div>
   )
