@@ -13,6 +13,8 @@ export default function ResultAccordion({ data }) {
   const location = useLocation();
   const initialResults = location.state?.report || {};  
   const [results, setResults] = useState(initialResults);
+  // console.log(location.state?.id);
+  
   const {setReport} = useReportContext();
   const [loading,setLoading] = useState(false);
 
@@ -34,6 +36,9 @@ export default function ResultAccordion({ data }) {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },  
+      params: {
+        report_id: location.state?.id
+      }
     });
     setReport(data);
     nav(-1)
@@ -53,6 +58,9 @@ export default function ResultAccordion({ data }) {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },  
+      params: {
+        report_id: location.state?.id
+      }
     });
     // console.log(data)
     setReport(data);

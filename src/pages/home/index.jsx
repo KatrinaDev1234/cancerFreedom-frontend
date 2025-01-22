@@ -31,6 +31,7 @@ function Form() {
     dob: "",
   });
   const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState(null);
 
   const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
   const minDate = new Date();
@@ -40,11 +41,12 @@ function Form() {
   async function handleSubmit(e) {
     e.preventDefault();
     if(data?.email.includes("@") === false) {
-      alert("Please enter a valid email address");
+      // alert("Please enter a valid email address");
+      setErr("Please enter a valid email address");
       return;
     }
     if(data?.dob === "") {
-      alert("Please enter your date of birth");
+      setErr("Please enter your date of birth");
       return;
     }
 
@@ -52,10 +54,13 @@ function Form() {
     try {
       const res = await axios.post(`${API_BASEURL}/auth/signin`, data); 
       localStorage.setItem("token", res.data.data.token);
-      
+      localStorage.setItem("user", data.email)
+      localStorage.setItem("dob", data.dob)
+
       nav("/selectReport");
     } catch (error) {
-      console.log(error.message);
+      setErr(error?.response?.data?.message || "NETWORK ERROR");
+      // console.log(error?.response?.data?.message || "NETWORK ERROR");
     } finally {
       setLoading(false); // Set loading to false when the request ends
     }
@@ -67,16 +72,18 @@ function Form() {
         <input
           type="email"
           placeholder="Email"
-          onChange={(e)=> setData({...data, email: e.target.value})}
+          onChange={(e)=> {setErr(null), setData({...data, email: e.target.value})}}
           className="w-full  border-none outline-none bg-white px-2 py-4 rounded-full placeholder:font-bold"
         />
         <input
           type="date"
-          onChange={(e)=> setData({...data, dob: e.target.value})}
+          onChange={(e)=> {setErr(null),setData({...data, dob: e.target.value})}}
           max={minDateString} // Disable future dates and dates less than 16 years ago
           placeholder="DD/MM/YYYY"
           className="w-full  border-none outline-none bg-white px-2 py-4 rounded-full placeholder:font-bold "
         />
+        {err && <div className="text-red-500 text-center">{err}</div>}
+
         <button
           onClick={handleSubmit}
           className="bg-primary w-full rounded-full py-4 text-white"
@@ -84,6 +91,7 @@ function Form() {
         >
           {loading ? "Loading..." : "Next"} 
         </button>
+
       </div>
     </div>
   );

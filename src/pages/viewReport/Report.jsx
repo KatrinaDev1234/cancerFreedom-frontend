@@ -32,9 +32,9 @@ const {report } = useReportContext();
     <div className=' flex items-center gap-4'>
     <h2 className='text-2xl text-gray-800 font-bold'>Key :</h2>
 <span className='flex items-center'>
-    <div className='p-2 bg-red-700 text-white shadow-lg border border-gray-700/50 rounded-sm'>Below Range</div>
-    <div className='p-2 bg-orange-500 text-white shadow-lg border border-gray-700/50 rounded-sm'>Above Range</div>
-    <div className='p-2 bg-yellow-300 text-white shadow-lg border border-gray-700/50 rounded-sm'>Present</div>
+    <div className='p-2 bg-yellow-300 text-white shadow-lg border border-gray-700/50 rounded-sm'>Below Range</div>
+    <div className='p-2 bg-red-700 text-white shadow-lg border border-gray-700/50 rounded-sm'>Above Range</div>
+    <div className='p-2 bg-orange-500 text-white shadow-lg border border-gray-700/50 rounded-sm'>Present</div>
 
 </span>
     </div>

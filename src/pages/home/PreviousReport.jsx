@@ -21,7 +21,9 @@ export default function PreviousReport() {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },  
-        });          
+        });      
+        console.log(data);
+            
         setReports(data.reports);
       } catch (error) {
         alert("NETWORK ERROR", error.message);
@@ -54,7 +56,7 @@ export default function PreviousReport() {
                         <h1 className='text-xl font-bold'>Report Date: {new Date(report.createdAt).toLocaleDateString()}</h1>
                         {report.status === "pending" ? (
                             <button 
-                                onClick={() => nav("/previousReport/Result", { state: { report: report.report } })} 
+                                onClick={() => nav("/previousReport/Result", { state: { report: report.report, id:report._id } })} 
                                 className='text-center flex items-center justify-center gap-2 bg-[#DFDA39] p-1.5 text-white font-bold w-full rounded-xl'>
                                 Continue the draft
                                 <FaArrowRight/>

@@ -72,16 +72,16 @@ const Table= ({data})=> (
    <td className="py-2 px-4 border border-gray-300">{v.range?.max}</td>
    <td className="py-2 px-4 border border-gray-300">{v.enter}</td>
  
-   {v.status== "above range" &&  <td className={`py-2 px-4 border border-gray-300 bg-orange-500 font-bold `}>
+   {v.status== "above range" &&  <td className={`py-2 px-4 border border-gray-300 bg-red-700 font-bold `}>
   <span className='mx-auto w-full  flex items-center justify-center text-white'>   <FaArrowUpLong/></span>
    </td>}
-   {v.status== "below range" &&  <td className={`py-2 px-4 border border-gray-300 bg-red-700 font-bold `}>
+   {v.status== "below range" &&  <td className={`py-2 px-4 border border-gray-300 bg-yellow-300 font-bold `}>
   <span className='mx-auto w-full  flex items-center justify-center text-white'> <FaArrowDownLong/></span>
 
      
    </td>}
-   {v.status== "present" &&  <td className={`py-2 px-4 border border-gray-300 bg-yellow-300 font-bold `}>
-  <span className='mx-auto w-full  flex items-center justify-center text-black'> <BsDash/> </span>
+   {v.status== "present" &&  <td className={`py-2 px-4 border border-gray-300 bg-orange-500 font-bold `}>
+  <span className='mx-auto w-full  flex items-center justify-center text-white'> <BsDash/> </span>
    </td>}
  </tr>
         ))}

@@ -40,14 +40,13 @@ export default function ViewReport() {
             <img src={LOGO} />
           {/* </div> */}
           <span className="uppercase text-xl font-bold ">
-            {["report", "recommendation", "lifestyle"].filter(v=> pathname.includes(v))?.[0]  
+            {[["report","Root Cause Assessment"], ["recommendation","Recommendation"], ["lifestyle", "Lifestyle"]].filter(v=> pathname.includes(v[0]))?.[0][1]  
             }
           </span>
           <div>
-            <p>Marcella Points</p>
-            <p>8892 Wolf Run - 25336</p>
-            <p>Santee</p>
-            <p>United States</p>
+            <p>{localStorage.getItem("user")}</p>
+            <p>{localStorage.getItem("dob")}</p>
+           
 
           </div>
         </div>
