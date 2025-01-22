@@ -3,7 +3,10 @@ import Layout from "../../components/Layout";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import BackButton from "../home/BackButton";
 import { useReactToPrint } from "react-to-print";
+
 import LOGO from "../../assets/cancerFreedom.png";
+
+import { IoDocumentOutline, IoPrintOutline } from "react-icons/io5";
 
 export default function ViewReport() {
   const { pathname } = useLocation();
@@ -56,15 +59,15 @@ export default function ViewReport() {
       <div className="flex w-[62rem] left-1/2 -translate-x-1/2  mx-auto items-center justify-center mt-4 gap-4 bg-white p-4 rounded-xl absolute bottom-4">
         <button
           onClick={() => nav("/newReport/Result")}
-          className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize"
+          className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:bg-primary/30"
         >
-          Generate new report
+          Generate new report  <span className="text-xl"><IoDocumentOutline/></span>
         </button>
         <button
           onClick={() => reactToPrintFn()}
-          className="border border-primary basis-1/2 py-2 rounded-lg bg-primary text-white"
+          className="border border-primary basis-1/2 py-2 rounded-lg bg-primary text-white flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:bg-primaryDark"
         >
-          Print
+          Print  <span className="text-xl"><IoPrintOutline/></span>
         </button>
       </div>
     </Layout>

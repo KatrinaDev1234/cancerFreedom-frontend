@@ -68,7 +68,7 @@ function Form() {
   
   return (
     <div className="p-8 bg-white/40 backdrop-blur-sm max-w-96 rounded-3xl">
-      <div className="space-y-2">
+      <div className="space-y-3">
         <input
           type="email"
           placeholder="Email"
@@ -86,7 +86,7 @@ function Form() {
 
         <button
           onClick={handleSubmit}
-          className="bg-primary w-full rounded-full py-4 text-white"
+          className="bg-primary w-full rounded-full py-4 text-white transition duration-300 ease-in-out hover:bg-primaryDark"
           disabled={loading} // Disable button when loading
         >
           {loading ? "Loading..." : "Next"} 

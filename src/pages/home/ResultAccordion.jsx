@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 import { IoIosArrowDown } from "react-icons/io";
+import { IoDocumentTextOutline } from "react-icons/io5";
+import { FiFileText } from 'react-icons/fi';
 
 import { useNavigate, useLocation } from "react-router-dom";
 import { API_BASEURL, tempBody } from "../../utils/constants";
@@ -95,17 +97,17 @@ export default function ResultAccordion({ data }) {
         {/* <button onClick={()=> setResults({})} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">
           Generate new report
         </button> */}
-        <button onClick={handleSaveDraft} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">
-          Save draft
+        <button onClick={handleSaveDraft} className="border border-primary basis-1/2 py-2 flex items-center justify-center gap-2 rounded-lg bg-primary/20 text-primary capitalize transition duration-300 ease-in-out hover:bg-primary/30">
+          Save draft <FiFileText/>
         </button>
-        <button onClick={()=> setResults({...tempBody})} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize">
+        <button onClick={()=> setResults({...tempBody})} className="border border-primary basis-1/2 py-2 rounded-lg bg-primary/20 text-primary capitalize transition duration-300 ease-in-out hover:bg-primary/30">
           Fake Fill
         </button>
         <button
           onClick={!loading && handleGenerateReport}
-          className="border border-primary basis-1/2 py-2 rounded-lg bg-primary text-white"
+          className="border border-primary basis-1/2 py-2 rounded-lg bg-primary text-white flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:bg-primaryDark"
         >
-        {  loading? " LOADING..." : "Generate Report"}
+        {  loading? " LOADING..." : "Generate Report"} <IoDocumentTextOutline/>
         </button>
       </div>
     </div>
