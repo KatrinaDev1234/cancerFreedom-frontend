@@ -55,7 +55,8 @@ export default function ViewReport() {
         </div>
 
         <Outlet />
-      </div></div>
+      </div>
+      </div>
       <div className="flex w-[62rem] left-1/2 -translate-x-1/2  mx-auto items-center justify-center mt-4 gap-4 bg-white p-4 rounded-xl absolute bottom-4">
         <button
           onClick={() => nav("/newReport/Result")}

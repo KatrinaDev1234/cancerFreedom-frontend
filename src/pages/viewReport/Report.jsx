@@ -26,11 +26,11 @@ const {report } = useReportContext();
 
   return (
     <>
-   <div  className='space-y-6 p-4'>
-    <MainHeading className={"font-bold mb-6 text-gray-800 screen-only"}>Root Cause Assessment</MainHeading>
-    <h2 className='text-2xl text-gray-800'>Functional lab interpretation for :</h2>
+   <div  className='space-y-4 p-2'>
+    <MainHeading className={"font-bold  text-gray-800 screen-only"}>Root Cause Assessment</MainHeading>
+    <h2 className='text-xl text-gray-800'>Functional lab interpretation for :</h2>
     <div className=' flex items-center gap-4'>
-    <h2 className='text-2xl text-gray-800 font-bold'>Key :</h2>
+    <h2 className='text-xl text-gray-800 font-bold'>Key :</h2>
 <span className='flex items-center'>
     <div className='p-2 bg-yellow-300 text-white shadow-lg border border-gray-700/50 rounded-sm'>Below Range</div>
     <div className='p-2 bg-red-700 text-white shadow-lg border border-gray-700/50 rounded-sm'>Above Range</div>

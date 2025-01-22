@@ -10,7 +10,7 @@ export default function ReportCard({data}) {
   })
   
   return (
-    <div className="p-6  mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+    <div className="p-5  mx-auto bg-white rounded-xl  overflow-hidden">
       <div className='flex gap-2 items-center mb-4 '>
 <img src={ReportCardData.filter(v=> v.heading.toLowerCase()==data?.heading.toLowerCase())?.[0]?.icon} className='w-16' />
     <h1 className="text-2xl font-bold  capitalize">{data?.heading}</h1>
