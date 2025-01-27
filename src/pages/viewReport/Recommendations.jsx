@@ -38,7 +38,20 @@ export default function Recommendations() {
 // console.log(val, val?.[heading?.[idx]]);
 <tr className="">
  {heading.map((heading)=> (
+  <>
+  {
+   heading === "BRAND" ? (
+    <td className="border border-gray-200 p-2 relative group">
+      {val?.[heading]}
+      <span className="absolute transform -translate-x-1/2 mb-2 w-max p-2 bg-gray-700 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        {val?.["Brand Abbreviation"]}
+      </span>
+    </td>
+  ) : (
   <td className="border border-gray-200 p-2">{val?.[heading]}</td>
+  )
+  }
+  </>
    ))}
 </tr>
           

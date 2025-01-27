@@ -8,6 +8,7 @@ import LOGO from "../../assets/cancerFreedom.png";
 import Report from "./Report";
 import Lifestyle from "./Lifestyle";
 import Recommendations from "./Recommendations";
+import AlternativeProducts from "./AlternativeProducts";
 
 import { IoDocumentOutline, IoPrintOutline } from "react-icons/io5";
 
@@ -22,7 +23,7 @@ export default function ViewReport() {
     <Layout className={"relative"}>
       <BackButton />
       <div className="max-w-5xl bg-white p-4 flex items-center justify-center gap-6 mx-auto mt-2 rounded-xl mb-6">
-        {["report", "recommendation", "lifestyle"].map((v, idx) => (
+        {["report", "recommendation", "adjunctive therapies"].map((v, idx) => (
           <button
             key={idx}
             onClick={() => setView(v)}
@@ -41,7 +42,8 @@ export default function ViewReport() {
           <span className="uppercase text-xl font-bold">
             {view === "report" && "Root Cause Assessment"}
             {view === "recommendation" && "Recommendation"}
-            {view === "lifestyle" && "Lifestyle"}
+            {view === "adjunctive therapies" && "adjunctive therapies"}
+            {view === "alternative products" && "Alternative Products"}
           </span>
           <div>
             <p>{localStorage.getItem("user")}</p>
@@ -58,7 +60,8 @@ export default function ViewReport() {
         </div>
         {view === "report" && <Report />}
         {view === "recommendation" && <Recommendations />}
-        {view === "lifestyle" && <Lifestyle />}
+        {view === "adjunctive therapies" && <Lifestyle />}
+        {view === "alternative products" && <AlternativeProducts />}
       </div>
     </Layout>
   );

@@ -24,7 +24,7 @@ const Lifestyle = () => {
               <td className="border border-gray-300 px-4 py-2">
                 <ul className="list-disc pl-5">
                   {item["Recommendation"]?.length &&  item["Recommendation"].map((rec, recIndex) => (
-                    <li key={recIndex}>{rec}</li>
+                    <li key={recIndex} className={`${rec?.includes("(essential)") && "text-primary"}`}>{rec}</li>
                   ))}
                 </ul>
               </td>

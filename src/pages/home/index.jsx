@@ -10,17 +10,17 @@ export default function Home() {
     <Layout
       className={"flex flex-col gap-4 items-center justify-center relative"}
     >
-      <MainHeading className={"text-lime-400 font-bold"}>
+      <MainHeading className={"text-primary font-bold max-w-md text-center"}>
         Join The Cancer Freedom Movement
       </MainHeading>
       <Form />
-      <div className="text-center absolute bottom-8 text-lg">
+      {/* <div className="text-center absolute bottom-8 text-lg">
         <p>Thank You for your interest in joining the program</p>
         <p>
           Before we can get going, I need to know a little more about you and if
           you're a good fit for what we offer.
         </p>
-      </div>
+      </div> */}
     </Layout>
   );
 }
