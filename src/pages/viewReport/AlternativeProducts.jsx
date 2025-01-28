@@ -1,77 +1,53 @@
 import React from "react";
+import axios from "axios";
+import { API_BASEURL } from "../../utils/constants";
 import { useReportContext } from "../../components/ReportContext";
 
 export default function AlternativeProducts() {
-  const { report } = useReportContext();
-  const products = [
-    {
-      product: "Gentle Senna",
-      answer: { type: "radio", options: ["Yes", "No"] },
-    },
-    {
-      product: "Critical Digestion",
-      answer: { type: "radio", options: ["Yes", "No"] },
-    },
-    {
-      product: "BileMin",
-      answer: { type: "radio", options: ["Yes", "No"] },
-    },
-    {
-      product: "Ultima Electrolytes",
-      answer: { type: "radio", options: ["Yes", "No"] },
-    },
-    {
-      product: "Crucera-SGS",
-      answer: { type: "radio", options: ["Yes", "No"] },
-    },
-    {
-      product: "Phosphatidylcholine",
-      answer: { type: "radio", options: ["Yes", "No"] },
-    },
-    {
-      product: "Biomega 1000",
-      answer: { type: "radio", options: ["Yes", "No"] },
-    },
-    {
-      product: "SafeCell",
-      answer: { type: "radio", options: ["Yes", "No"] },
-    },
-    {
-      product: "Enterovite",
-      answer: { type: "radio", options: ["Yes", "No"] },
-    },
-    {
-      product: "MegaMucosa",
-      answer: { type: "radio", options: ["Yes", "No"] },
-    },
-    {
-      product: "Bio-HPF",
-      answer: { type: "radio", options: ["Yes", "No"] },
-    },
-    {
-      product: "H-PLR",
-      answer: { type: "radio", options: ["Yes", "No"] },
-    },
-    {
-      product: "Monolaurin-Avail",
-      answer: { type: "radio", options: ["Yes", "No"] },
-    },
-    {
-      product: "Hydrozyme/Betaine Plus HP",
-      answer: { type: "radio", options: ["Yes", "No"] },
-    },
-  ];
-  
+  const { report, setReport } = useReportContext();
+  const products = report?.products?.map((product) => {
+    return {
+      "Main Product": product["MAIN PRODUCT"],
+      "Main Brand": product["MAIN BRAND"],
+      "Finalized Product": product?.PRODUCT,
+      answer: { type: "radio", options: ["Yes", "No"], default: product["MAIN PRODUCT"] === product?.PRODUCT ? "Yes" : "No" },
+    };
+  });
+
+  const handleProductChange = async (index, value, answer) => {
+    try {
+      const {data: {data}} = await axios.put(
+        `${API_BASEURL}/report`,
+        {
+          product: value['Main Product'],
+          brand: value['Main Brand'],
+          answer: answer,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          params: {
+            id: report?._id,
+          },
+        }
+      );
+      setReport(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="flex flex-row gap-4">
       <div className="bg-white w-1/2">
         <table className="min-w-full">
           <thead>
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-lg font-bold uppercase tracking-wider">
                 Products
               </th>
-              <th className="px-6 py-3 text-left text-xs font-bold tracking-wider">
+              <th className="px-6 py-3 text-right text-lg font-bold tracking-wider">
                 Available(Y/N)
               </th>
             </tr>
@@ -80,12 +56,21 @@ export default function AlternativeProducts() {
             {products?.map((product, index) => (
               <tr key={index}>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {product?.product}
+                  {product?.["Main Product"]}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right">
                   {product?.answer?.options?.map((option) => (
                     <label key={option} className="mr-2">
-                      <input type="radio" name={`product-${index}`} value={option} className="mr-1" />
+                      <input
+                        type="radio"
+                        name={`product-${index}`}
+                        value={option}
+                        className="mr-1"
+                        defaultChecked={option === product?.answer?.default}
+                        onChange={(e) =>
+                          handleProductChange(index, product, e.target.value)
+                        }
+                      />
                       {option}
                     </label>
                   ))}
@@ -95,7 +80,35 @@ export default function AlternativeProducts() {
           </tbody>
         </table>
       </div>
-      <div className="bg-white w-1/2"></div>
+      <div className="bg-white w-1/2">
+        <table className="min-w-full">
+          <thead>
+            <tr>
+              <th className="px-6 py-3 text-white bg-primary text-left text-lg font-bold uppercase tracking-wider">
+                Finalized Product List
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white">
+            {products?.map((product, index) => (
+              <React.Fragment key={index}>
+                <tr>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {product?.["Finalized Product"]}
+                  </td>
+                </tr>
+                {index < products.length - 1 && (
+                  <tr>
+                    <td className="">
+                      <hr className="border-t border-gray-200" />
+                    </td>
+                  </tr>
+                )}
+              </React.Fragment>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

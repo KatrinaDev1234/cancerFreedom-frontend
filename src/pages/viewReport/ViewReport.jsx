@@ -23,7 +23,7 @@ export default function ViewReport() {
     <Layout className={"relative"}>
       <BackButton />
       <div className="max-w-5xl bg-white p-4 flex items-center justify-center gap-6 mx-auto mt-2 rounded-xl mb-6">
-        {["report", "recommendation", "adjunctive therapies"].map((v, idx) => (
+        {["report", "recommendation", "adjunctive therapies", "alternative products"].map((v, idx) => (
           <button
             key={idx}
             onClick={() => setView(v)}
