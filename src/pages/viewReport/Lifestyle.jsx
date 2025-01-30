@@ -59,9 +59,9 @@ const Card = ({ heading, tableData }) => {
       <h2 className=' text-2xl font-bold  capitalize'>{heading}</h2>
 
       </div>
-      <p className='my-4 text-gray-700'>
+      {/* <p className='my-4 text-gray-700'>
         {ReportCardData.filter(v=> v.heading.toLowerCase().includes(heading.toLowerCase()))?.[0]?.description}
-      </p>
+      </p> */}
       <table className="table-auto w-full border border-gray-300 bg-white mt-4">
         <thead>
           <tr className="bg-primary text-white">
