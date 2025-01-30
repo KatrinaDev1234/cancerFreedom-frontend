@@ -50,7 +50,7 @@ export default function ViewReport() {
             <p>{localStorage.getItem("dob")}</p>
           </div>
         </div>
-        <div className={`flex justify-end mb-4 screen-only z-[1000] ${view=="report" && "absolute right-2 "}`}>
+        <div className={`flex justify-end mb-4 screen-only z-[1000] ${(view=="report" || view === "adjunctive therapies") && "absolute right-2 "}`}>
           <button
             onClick={() => reactToPrintFn()}
             className="border border-primary w-40 py-2 rounded-lg bg-primary text-white flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:bg-primaryDark "
