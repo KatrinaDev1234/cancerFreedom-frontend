@@ -22,7 +22,7 @@ export default function Recommendations() {
   return (
     <div className="bg-white shadow-lg rounded-lg ">
     {/* <h2 className="text-2xl font-semibold mb-4">Recommendations</h2> */}
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto overflow-y-hidden">
       <table className="w-full border-collapse border border-gray-200 text-sm text-left">
         <thead>
           <tr className="bg-primary text-white">
