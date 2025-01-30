@@ -65,15 +65,15 @@ const Card = ({ heading, tableData }) => {
       <table className="table-auto w-full border border-gray-300 bg-white mt-4">
         <thead>
           <tr className="bg-primary text-white">
-            <th className="border border-gray-300 px-4 py-2">Therapy</th>
-            <th className="border border-gray-300 px-4 py-2">Name</th>
-            <th className="border border-gray-300 px-4 py-2">Dosing</th>
-            <th className="border border-gray-300 px-4 py-2">Additional Notes</th>
+            <th className="border border-gray-300 px-4 py-2 w-1/3">Therapy</th>
+            <th className="border border-gray-300 px-4 py-2 w-1/6">Name</th>
+            <th className="border border-gray-300 px-4 py-2 w-1/6">Dosing</th>
+            <th className="border border-gray-300 px-4 py-2 w-1/3">Additional Notes</th>
           </tr>
         </thead>
         <tbody>
           {tableData?.length && tableData.map((item, index) => (
-            <tr key={index}>
+            <tr key={index} className={item?.therapy?.includes("essential") ? 'text-pink-700' : ''}>
               <td className="border border-gray-300 px-4 py-2">{item.therapy}</td>
               <td className="border border-gray-300 px-4 py-2">{item.name}</td>
               <td className="border border-gray-300 px-4 py-2">{item.dosing}</td>

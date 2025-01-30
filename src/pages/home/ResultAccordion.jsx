@@ -136,7 +136,7 @@ Object.keys(resDup).length === 0 ? setIsDraftDisbled(true) : setIsDraftDisbled(f
           Fake Fill
         </button>
         <button
-        disabled={!isAllFilled}
+        disabled={JSON.stringify(results) === "{}"}
           onClick={!loading && handleGenerateReport}
           className="border border-primary basis-1/2 py-2 rounded-lg bg-primary text-white flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:bg-primaryDark disabled:cursor-not-allowed"
         >

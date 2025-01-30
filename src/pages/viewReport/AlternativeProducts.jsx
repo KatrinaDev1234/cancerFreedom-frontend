@@ -5,22 +5,31 @@ import { useReportContext } from "../../components/ReportContext";
 
 export default function AlternativeProducts() {
   const { report, setReport } = useReportContext();
+  const [loading, setLoading] = React.useState(false);
+
   const products = report?.products?.map((product) => {
     return {
       "Main Product": product["MAIN PRODUCT"],
       "Main Brand": product["MAIN BRAND"],
       "Finalized Product": product?.PRODUCT,
-      answer: { type: "radio", options: ["Yes", "No"], default: product["MAIN PRODUCT"] === product?.PRODUCT ? "Yes" : "No" },
+      answer: {
+        type: "radio",
+        options: ["Yes", "No"],
+        default: product["MAIN PRODUCT"] === product?.PRODUCT ? "Yes" : "No",
+      },
     };
   });
 
   const handleProductChange = async (index, value, answer) => {
     try {
-      const {data: {data}} = await axios.put(
+      setLoading(index);
+      const {
+        data: { data },
+      } = await axios.put(
         `${API_BASEURL}/report`,
         {
-          product: value['Main Product'],
-          brand: value['Main Brand'],
+          product: value["Main Product"],
+          brand: value["Main Brand"],
           answer: answer,
         },
         {
@@ -35,6 +44,8 @@ export default function AlternativeProducts() {
       setReport(data);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(-1);
     }
   };
 
@@ -91,20 +102,17 @@ export default function AlternativeProducts() {
           </thead>
           <tbody className="bg-white">
             {products?.map((product, index) => (
-              <React.Fragment key={index}>
-                <tr>
+              <tr key={index}>
+                {loading === index ? (
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium bg-slate-200 text-gray-900">
+                    Loading...
+                  </td>
+                ) : (
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {product?.["Finalized Product"]}
                   </td>
-                </tr>
-                {index < products.length - 1 && (
-                  <tr>
-                    <td className="">
-                      <hr className="border-t border-gray-200" />
-                    </td>
-                  </tr>
                 )}
-              </React.Fragment>
+              </tr>
             ))}
           </tbody>
         </table>
