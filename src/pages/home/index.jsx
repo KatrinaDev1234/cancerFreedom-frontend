@@ -82,19 +82,25 @@ function Form() {
   return (
     <div className="p-8 bg-white/40 backdrop-blur-sm max-w-96 rounded-3xl">
       <div className="space-y-3">
-        <input
-          type="email"
-          placeholder="Email"
-          onChange={(e)=> {setErr(null), setData({...data, email: e.target.value})}}
-          className="w-full  border-none outline-none bg-white px-2 py-4 rounded-full placeholder:font-bold text-lg"
-        />
-        <input
-          type="date"
-          onChange={(e)=> {setErr(null),setData({...data, dob: e.target.value})}}
-          max={minDateString} // Disable future dates and dates less than 16 years ago
+        <label className="block text-lg font-bold">
+          Email
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={(e)=> {setErr(null), setData({...data, email: e.target.value})}}
+            className="w-full border-none outline-none bg-white px-2 py-4 rounded-full placeholder:font-bold text-lg"
+          />
+        </label>
+        <label className="block text-lg font-bold">
+          Date of Birth
+          <input
+            type="date"
+            onChange={(e)=> {setErr(null),setData({...data, dob: e.target.value})}}
+            max={minDateString} // Disable future dates and dates less than 16 years ago
           placeholder="DD/MM/YYYY"
           className="w-full  border-none outline-none bg-white px-2 py-4 rounded-full placeholder:font-bold text-lg "
-        />
+          />
+        </label>
         {err && <div className="text-red-500 text-center">{err}</div>}
 
         <button
